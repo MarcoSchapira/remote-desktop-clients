@@ -11,7 +11,7 @@ public class RandomString
     }
 
     public String randomString(final int length, int maxValue) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(); //create a string called value with a length of 16 char
         for(int i = 0; i < length; i++) {
             char c = (char)(r.nextInt(maxValue)+32);
             sb.append(c);
