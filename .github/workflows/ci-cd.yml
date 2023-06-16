@@ -23,6 +23,10 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
+      # Set up Dependencies
+      - name: Set up Dependencies
+        run:  ./download-prebuilt-dependencies.sh && ./bVNC/prepare_project.sh --skip-build libs nopath
+
       # Run Tests Build
       - name: Run gradle tests
         run: ./gradlew test
