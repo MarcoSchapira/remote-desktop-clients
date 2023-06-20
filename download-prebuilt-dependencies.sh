@@ -7,8 +7,10 @@ DEPVER=14
 
 if $(which wget)
 then
+  echo Hello World 1
   wget -c https://github.com/iiordanov/remote-desktop-clients/releases/download/dependencies/remote-desktop-clients-libs-${DEPVER}.tar.gz
 else
+  echo Hello World 2
   curl -L https://github.com/iiordanov/remote-desktop-clients/releases/download/dependencies/remote-desktop-clients-libs-${DEPVER}.tar.gz -o remote-desktop-clients-libs-${DEPVER}.tar.gz
 fi
 

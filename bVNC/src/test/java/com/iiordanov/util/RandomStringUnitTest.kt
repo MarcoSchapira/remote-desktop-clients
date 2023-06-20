@@ -5,9 +5,11 @@ import org.junit.Test
 import org.junit.Assert.*
 
 class RandomStringUnitTest {
+
+    val rS = RandomString()
+
     @Test
     fun randomStringTest () {
-        val rS = RandomString()
 
         var arr = IntArray(5) { it * 1 }
         //println("$arr")
@@ -36,5 +38,23 @@ class RandomStringUnitTest {
 
         }
 
+    }
+
+    @Test
+    fun randomLowerCaseStringTest () {
+        var arr = IntArray(5) { it * 1 }
+        //println("$arr")
+
+        for ((value) in arr.withIndex()) {
+
+            val setlength = (value*2) + 2
+
+            var teststringlowercase = rS.randomLowerCaseString(setlength)
+
+            //println("$teststring")
+
+            assertEquals(setlength, teststringlowercase.length)
+
+        }
     }
 }

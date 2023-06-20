@@ -32,13 +32,13 @@ jobs:
         run: ./gradlew test
 
       # Run Build Project
-      - name: Build gradle project
-        run: ./gradlew build
+      #- name: Build gradle project
+      #  run: ./gradlew build
 
       # Create APK Debug
-      - name: Build apk debug project (APK) - ${{ env.main_project_module }} module
-        run: ./gradlew assembleDebug
+      #- name: Build apk debug project (APK) - ${{ env.main_project_module }} module
+      #  run: ./gradlew assembleDebug
 
       # Create APK Release
-      - name: check apk folder
-        run: ls -l ./app/build/outputs/apk/debug/
+      #- name: check apk folder
+      #  run: ls -l ./app/build/outputs/apk/debug/
