@@ -2,7 +2,7 @@ name: GitHub Actions
 run-name: Unit tests
 on: [push]
 env:
-  ANDROID_SDK: "~/Android/Sdk"
+  ANDROID_SDK: "/home/runner/work/remote-desktop-clients/remote-desktop-clients/Android/Sdk"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
