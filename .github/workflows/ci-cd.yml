@@ -2,7 +2,7 @@ name: GitHub Actions
 run-name: Unit tests
 on: [push]
 env:
-  ANDROID_SDK: "/home/runner/work/remote-desktop-clients/remote-desktop-clients/Android/Sdk"
+  ANDROID_HOME: "/home/runner/work/remote-desktop-clients/remote-desktop-clients/Android/Sdk"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -17,14 +17,14 @@ jobs:
 
       - name: Install prerequisites
         run: |
-          mkdir -p ${ANDROID_SDK}
-          cd ${ANDROID_SDK}
+          mkdir -p ${ANDROID_HOME}
+          cd ${ANDROID_HOME}
           curl -O https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
           unzip commandlinetools-linux-9477386_latest.zip
           rm commandlinetools-linux-9477386_latest.zip
-          ${ANDROID_SDK}/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-33" "platforms;android-21"
+          ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-33" "platforms;android-21"
           echo "PATH=${PATH}"
-          echo "ANDROID_SDK=${ANDROID_SDK}"
+          echo "ANDROID_HOME=${ANDROID_HOME}"
 
       - name: Set Up JDK
         uses: actions/setup-java@v1
