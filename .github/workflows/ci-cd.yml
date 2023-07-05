@@ -27,18 +27,10 @@ jobs:
       - name: Set up Dependencies
         run:  ./download-prebuilt-dependencies.sh && ./bVNC/prepare_project.sh --skip-build libs nopath
 
+      - name: Run gradle build
+        run: ./gradlew assembleDebug
+
       # Run Tests Build
       - name: Run gradle tests
         run: ./gradlew test
 
-      # Run Build Project
-      #- name: Build gradle project
-      #  run: ./gradlew build
-
-      # Create APK Debug
-      #- name: Build apk debug project (APK) - ${{ env.main_project_module }} module
-      #  run: ./gradlew assembleDebug
-
-      # Create APK Release
-      #- name: check apk folder
-      #  run: ls -l ./app/build/outputs/apk/debug/
