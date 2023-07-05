@@ -20,9 +20,10 @@ jobs:
           mkdir -p ${ANDROID_SDK}
           cd ${ANDROID_SDK}
           curl -O https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+          unzip commandlinetools-linux-9477386_latest.zip
           echo $(pwd)
           ls -l
-          unzip commandlinetools-linux-9477386_latest.zip
+          ls -l  cmdline-tools
           rm commandlinetools-linux-9477386_latest.zip
           ${ANDROID_SDK}/cmdline-tools/sdkmanager "platform-tools" "platforms;android-33" "platforms;android-21"
           echo "PATH=${PATH}"
