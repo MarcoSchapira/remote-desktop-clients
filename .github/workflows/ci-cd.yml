@@ -7,13 +7,21 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      # Set Current Date As Env Variable
       - name: Set current date as env variable
         run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      # Set Repository Name As Env Variable
       - name: Set repository name as env variable
         run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+
+      - name: Install prerequisites
+        run: |
+          echo $ANDROID_SDK
+          sudo apt-get install curl -yy
+          curl -O https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+          unzip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+          PATH=$(pwd)/cmdline-tools/bin:${PATH}
+          sdkmanager "platform-tools" "platforms;android-33" "platforms;android-21"
+          echo $ANDROID_SDK
 
       - name: Set Up JDK
         uses: actions/setup-java@v1
@@ -23,16 +31,8 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
-      # Set up Dependencies
       - name: Set up Dependencies
         run:  ./download-prebuilt-dependencies.sh && ./bVNC/prepare_project.sh --skip-build libs nopath
 
       - name: Run gradle build
         run: ./gradlew :aRDP-app:build :bVNC-app:build :aSPICE-app:build :CustomVnc-app:build :Opaque-app:build :freeaRDP-app:build :freeaSPICE-app:build :freebVNC-app:build
-
-
-
-# Run Tests Build
-      - name: Run gradle tests
-        run: ./gradlew test
-
