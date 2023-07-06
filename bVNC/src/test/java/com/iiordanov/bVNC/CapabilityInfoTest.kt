@@ -1,10 +1,8 @@
-package com.iiordanov.util
+package com.iiordanov.bVNC
 
-import com.iiordanov.bVNC.CapabilityInfo
 
 import org.junit.Test
 import org.junit.Assert.*
-
 
 class CapabilityInfoTest {
 
@@ -17,7 +15,7 @@ class CapabilityInfoTest {
 
     //val a = testerString.first().code
 
-    val CIstrings = CapabilityInfo(testerCode,testerStringa,testerStringb, testerStringc)
+    val CIstrings = CapabilityInfo(testerCode, testerStringa, testerStringb, testerStringc)
 
     @Test
     fun TestingStringConstructor() {
@@ -38,9 +36,6 @@ class CapabilityInfoTest {
          */
         assertTrue(CIstrings.equals(CIstrings))
         assertTrue(CIstrings.enableIfEquals(CIstrings))
-
-
-
 
 
     }
