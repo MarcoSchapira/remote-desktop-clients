@@ -1,35 +1,19 @@
 name: GitHub Actions
 run-name: Unit tests
 on: [push]
-env:
-  ANDROID_HOME: "/home/runner/work/remote-desktop-clients/remote-desktop-clients/Android/Sdk"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
 
-      - name: Set current date as env variable
-        run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-
-      - name: Set repository name as env variable
-        run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
-
-      - name: Install prerequisites
-        run: |
-          mkdir -p ${ANDROID_HOME}
-          cd ${ANDROID_HOME}
-          curl -O https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
-          unzip commandlinetools-linux-9477386_latest.zip
-          rm commandlinetools-linux-9477386_latest.zip
-          yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --licenses
-          echo "PATH=${PATH}"
-          echo "ANDROID_HOME=${ANDROID_HOME}"
-
       - name: Set Up JDK
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
 
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
