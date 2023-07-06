@@ -21,5 +21,11 @@ jobs:
       - name: Set up Dependencies
         run:  ./download-prebuilt-dependencies.sh && ./bVNC/prepare_project.sh --skip-build libs nopath
 
+      - name: Print Env
+        run: env
+
       - name: Run gradle build
         run: ./gradlew :aRDP-app:build :bVNC-app:build :aSPICE-app:build :CustomVnc-app:build :Opaque-app:build :freeaRDP-app:build :freeaSPICE-app:build :freebVNC-app:build
+
+      - name: Run gradle tests
+        run: ./gradlew test
