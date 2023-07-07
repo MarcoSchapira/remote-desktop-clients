@@ -1,0 +1,32 @@
+name: Build & Test
+run-name: Build & Test
+on: [push]
+jobs:
+  Build-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
+      - name: Set up Dependencies
+        run: |
+          ./download-prebuilt-dependencies.sh && ./bVNC/prepare_project.sh --skip-build libs nopath
+          cd ${ANDROID_SDK_ROOT}
+          rm -rf ndk
+          sdkmanager --install "platform-tools" "platforms;android-33"
+
+      - name: Run gradle build
+        run: ./gradlew :aRDP-app:assembleDebug :bVNC-app:assembleDebug :aSPICE-app:assembleDebug :CustomVnc-app:assembleDebug :Opaque-app:assembleDebug :freeaRDP-app:assembleDebug :freeaSPICE-app:assembleDebug :freebVNC-app:assembleDebug
+
+      - name: Run gradle tests
+        run: ./gradlew test
