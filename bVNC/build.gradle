@@ -63,30 +63,34 @@ dependencies {
     implementation project(path: ':common')
     implementation 'com.google.android.gms:play-services-base:18.0.1'
 
+
+    //unit tests
     testImplementation 'junit:junit:4.13.2'
     testImplementation project(path: ':bVNC')
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
 
-    //mocking hopefully
+    ////mocking hopefully
 
-    testImplementation 'junit:junit:4.13.2'
-    //testImplementation 'junit:junit:5.2.0'
-    testImplementation('org.junit.jupiter:junit-jupiter:5.6.2')
-
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
-    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-    debugImplementation 'androidx.compose.ui:ui-tooling'
-    debugImplementation 'androidx.compose.ui:ui-test-manifest'
-
-    //// required if you want to use Mockito for unit tests
-    testImplementation 'org.mockito:mockito-core:5.3.1'
-    //// required if you want to use Mockito for Android tests
+//    testImplementation('org.junit.jupiter:junit-jupiter:5.6.2')
+//
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+//    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
+//    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+//    debugImplementation 'androidx.compose.ui:ui-tooling'
+//    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+//
+//    // required if you want to use Mockito for unit tests
+    testImplementation 'org.mockito:mockito-core:5.3.1'    //this dependency is needed for mocking but seems to break all tests
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:3.2.0' // this was not from greeting card, just a dependency I found online
+//
+//    // required if you want to use Mockito for Android tests
     androidTestImplementation 'org.mockito:mockito-android:5.3.1'
+//
+//    testImplementation 'org.mockito:mockito-junit-jupiter:5.3.1'
+//    testImplementation 'org.mockito.kotlin:mockito-kotlin:3.2.0'
 
 
 }
